@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Page Website</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --navbar-bg: rgb(204, 0, 0);
+      --navbar-text: #fff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--navbar-bg);
+      color: var(--navbar-text);
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 20px;
+    }
+
+    .navbar a {
+      color: var(--navbar-text);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+      text-shadow: .5px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+    }
+
+    .content {
+      margin-top: 60px; /* Default for desktop */
+      padding: 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+      }
+
+      .navbar a {
+        margin: 15px 0;
+      }
+
+      .navbar .logo {
+        margin-bottom: 10px;
+      }
+
+      .content {
+        margin-top: 150px; /* Add extra space for mobile to account for navbar height */
+      }
+    }
+    .content h1 {
+      padding: 10px 0; /* Adjust padding as needed */
+      line-height: 1.2; /* Reduce line spacing */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Kickball Positions</div>
+      <div class="nav-links">
+        <a href="#" data-page="home">Home</a>
+        <a href="#" data-page="person1">Stephanie</a>
+        <a href="#" data-page="person2">Jesse</a>
+        <a href="#" data-page="person3">Maximiliano</a>
+        <a href="#" data-page="person4">Tyler</a>
+        <a href="#" data-page="person5">Elvis</a>
+        <a href="#" data-page="person6">Carlyn</a>
+        <a href="#" data-page="person7">Alexis</a>
+        <a href="#" data-page="person8">Queilla</a>
+        <a href="#" data-page="person9">Najee</a>
+        <a href="#" data-page="person10">London</a>
+      </div>
+      <button id="dark-mode-toggle">Dark Mode</button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content" id="content">
+    <h1>This doc will tell you your position and what to do in each situation</h1>
+    <p>Use the navigation bar at the top to navigate to your name to see your info.</p>
+  </div>
+
+  <script>
+    const pages = {
+      person1: {
+        title: "Stephanie",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Be prepared to move up forward to back up infielders.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>If in the air: Sprint to make the catch. If on the ground: Sprint to intercept. With ball in hand look to throw to Jesse or Max, whoever is closer.</p>
+          <p>If the ball goes to Carlyn, position yourself nearby/behind to back her up.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Stay in position.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Stay in position.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person2: {
+        title: "Jesse",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>If ball to you: Move toward ball in between second and third. If ball away: move to pitcher position.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Move to Outfield to catch and assist with the play.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Move to second.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Move to shortfield, look to catch from Max or outfielders.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person3: {
+        title: "Maximiliano",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Move towards the ball's direction as backup.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Move towards short stop position to catch from outfielders and Jesse.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Move towards the right field to back up London and Alexis. Position yourself to make a catch between them and Jesse or Najee.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Move forward or backward to intercept or catch the ball. Look to throw to Jesse.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person4: {
+        title: "Tyler",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Either way ball is kicked move towards it for first touch. Look to strike out the opponent closest to scoring.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Move to third to back up Queilla, or Home if an out is needed.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Move to back up third base or home, depending on who's on base.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Look to back up third or go home.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person5: {
+        title: "Elvis",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Stay on first.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Stay on first base.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Stay on First.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Stay in position.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person6: {
+        title: "Carlyn",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Be prepared to move up forward to back up infielders.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>If in the air: Sprint to make the catch. If on the ground: Sprint to intercept. With ball in hand look to throw to Max or Jesse, whoever is closer.</p>
+          <p>If the ball is going to Stephanie, position yourself nearby/behind to back her up.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Stay in position.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Move towards the center a little bit behind the ball in case Max misses or doesn't get there in time.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person7: {
+        title: "Alexis",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Be prepared to move up forward to back up infielders.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Stay at right field.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>If in the air: Sprint to make the catch. If on the ground: Sprint to intercept. With ball in hand look to throw to Jesse or Max, whoever is closer.</p>
+          <p>If the ball goes to London, position yourself nearby/behind to back her up.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Stay in position.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person8: {
+        title: "Queilla",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>If kicked away from you: Stay in place. If kicked to you: Move forward to grab and throw to Tyler.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Stay on Third.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Stay on Third.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Stay in position.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person9: {
+        title: "Najee",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>If ball kicked toward you: Remain in between first and second to back up Tyler. If ball kicked away from you: Move to second base.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Move to second base.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>Move to outfield, look to throw to Jesse or Max, whoever is closer.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Move to second base.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      },
+      person10: {
+        title: "London",
+        content: `
+          <h2>Ball Infield</h2>
+          <img src="infield.jpg" alt="Ball Infield" style="width:100%;max-width:400px;">
+          <p>Be prepared to move up forward to back up infielders.</p>
+          <h2>Ball Left Outfield</h2>
+          <img src="left.jpg" alt="Ball Left Outfield" style="width:100%;max-width:400px;">
+          <p>Stay at right center.</p>
+          <h2>Ball Right Outfield</h2>
+          <img src="right.jpg" alt="Ball Right Outfield" style="width:100%;max-width:400px;">
+          <p>If in the air: Sprint to make the catch. If on the ground: Sprint to intercept. With ball in hand look to throw to Max or Jesse, whoever is closer.</p>
+          <p>If the ball is going to Alexis, position yourself nearby/behind to back her up.</p>
+          <h2>Ball Center Outfield</h2>
+          <img src="center.jpg" alt="Ball Center Outfield" style="width:100%;max-width:400px;">
+          <p>Move towards the center a little bit behind the ball in case Max misses or doesn't get there in time.</p>
+          <h2>General Tips</h2>
+          <p>General tips for playing effectively.</p>
+        `
+      }
+    };
+
+    // Handle navigation and content update
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault(); // Prevent default link behavior
+        const page = event.target.getAttribute('data-page');
+        const contentDiv = document.getElementById('content');
+
+        // Update page content
+        if (pages[page]) {
+          contentDiv.innerHTML = `
+            <h1>${pages[page].title}</h1>
+            ${pages[page].content}
+          `;
+        }
+      });
+    });
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    let isDarkMode = false;
+
+    toggleButton.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+
+      if (isDarkMode) {
+        document.documentElement.style.setProperty('--bg-color', '#333');
+        document.documentElement.style.setProperty('--text-color', '#f9f9f9');
+        document.documentElement.style.setProperty('--navbar-bg', '#222');
+        document.documentElement.style.setProperty('--navbar-text', '#f9f9f9');
+        toggleButton.textContent = 'Light Mode';
+      } else {
+        document.documentElement.style.setProperty('--bg-color', '#f9f9f9');
+        document.documentElement.style.setProperty('--text-color', '#333');
+        document.documentElement.style.setProperty('--navbar-bg', '#0078d7');
+        document.documentElement.style.setProperty('--navbar-text', '#fff');
+        toggleButton.textContent = 'Dark Mode';
+      }
+    });
+
+    function adjustContentMargin() {
+      const navbar = document.querySelector('.navbar');
+      const content = document.querySelector('.content');
+      const navbarHeight = navbar.offsetHeight;
+
+      // Apply the navbar height as margin-top to the content
+      content.style.marginTop = `${navbarHeight}px`;
+    }
+
+    // Adjust margin on page load and window resize
+    window.addEventListener('load', adjustContentMargin);
+    window.addEventListener('resize', adjustContentMargin);
+  </script>
+</body>
+</html>
